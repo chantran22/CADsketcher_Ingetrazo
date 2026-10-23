@@ -312,24 +312,4 @@ move if that solid later changes size.
   one point. Construction lines ending on the same corner (the diagonal of a
   centre rectangle) do not count and stay attached to the corner point.
 
-## Files and tests
 
-    model.py  solver.py  convert.py  features.py     data, solver, geometry (no Qt)
-    edit.py                                           trim and offset (no Qt)
-    host.py                                           IngeTrazo engine: groups, undo, sweep
-    controller.py  tool.py  panel.py                  state, viewport tool + overlay, panel
-
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_core.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_ui.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_bevel.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_edit.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_eyes.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_refs.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_tools2.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_bevel2.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_duplicate.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_placement.py
-    %LOCALAPPDATA%\Programs\Python\Python312\python.exe tests\test_loft_order.py
-
-The tests load IngeTrazo's real engine from the installed `ingetrazo.exe`
-(`tests/ingetrazo_env.py`). Plugin changes need an IngeTrazo restart.
