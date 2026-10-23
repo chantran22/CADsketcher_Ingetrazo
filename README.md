@@ -319,7 +319,11 @@ Installing: copy all file in this repo to C:\Users\AppData\Roaming\IngeTrazo\plu
 
 ## Pics demo
 
+### Working menu tab
+
+<img width="333" height="675" alt="image" src="https://github.com/user-attachments/assets/4aec463d-055d-433d-9cd4-590f66794d6c" />
+
 ### Lofting
-<img width="505" height="366" alt="image" src="https://github.com/user-attachments/assets/69c6f9ad-1108-4134-882d-faec26193833" />
+<img width="405" height="306" alt="image" src="https://github.com/user-attachments/assets/69c6f9ad-1108-4134-882d-faec26193833" />
 
 
