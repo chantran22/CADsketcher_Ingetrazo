@@ -312,4 +312,10 @@ move if that solid later changes size.
   one point. Construction lines ending on the same corner (the diagonal of a
   centre rectangle) do not count and stay attached to the corner point.
 
+## Install
+
+Installing: copy all file in this repo to C:\Users\AppData\Roaming\IngeTrazo\plugins 
+
+
+## Pics demo
 
