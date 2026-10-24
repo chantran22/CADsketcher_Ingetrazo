@@ -16,11 +16,11 @@ Open it from the **CAD Sketcher** tab at the bottom of the side tray, or
 > dimension: it is a rule the solver enforces, not an annotation.
 
 ---
+
 **
 Sequence practice step on CAD sketcher will follow step 1 to step 7.
 Sketch can setup on plan XY, YZ, ZX. To click "eye" symbol for invisible/ visible of sketches/ shapes
 **
-
 ---
 
 ## 1. Create a sketch
