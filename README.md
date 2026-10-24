@@ -6,7 +6,7 @@ extension API. Draw on a workplane, dimension it, then **Extrude / Loft /
 Sweep**. The solid keeps its sketch: change a dimension (or a fillet radius) and
 it is rebuilt, and one Undo takes back sketch and solid together.
 
-info CAD sketcher -Blender [https://www.cadsketcher.com/]
+info CAD sketcher -Blender can find in link [https://www.cadsketcher.com/]
 
 Open it from the **CAD Sketcher** tab at the bottom of the side tray, or
 *Extensions ▸ CAD Sketcher*.
