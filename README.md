@@ -15,7 +15,8 @@ Open it from the **CAD Sketcher** tab at the bottom of the side tray, or
 > Push/Pull… do not act on a sketch, and a sketch dimension is not an IngeTrazo
 > dimension: it is a rule the solver enforces, not an annotation.
 
-Sequence practice step on CAD sketcher will follow step 1 to step 7
+Sequence practice step on CAD sketcher will follow step 1 to step 7.
+Sketch can setup on plan XY, YZ, ZX
 
 ---
 
