@@ -20,7 +20,7 @@ Open it from the **CAD Sketcher** tab at the bottom of the side tray, or
 a) Sequence practice step on CAD sketcher will follow step 1 to step 7.
 Sketch can setup on plan XY, YZ, ZX. To click "eye" symbol for invisible/ visible of sketches/ shapes.
 
-b) Before set dimension or vertical/ horizontal alignnent, click "select" button first
+b) Before set dimension or vertical/ horizontal alignment, click "Select" button first (Draw commands group)
 
 ---
 
