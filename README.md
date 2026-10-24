@@ -342,6 +342,7 @@ Installing: copy all file in this repo to C:\Users\AppData\Roaming\IngeTrazo\plu
 
 ### Sweep
 From sketch with dimension constraints & curved path radius constraint given, can make the shape like this. 3D shape will auto-update when change dimensions of inner sketch.
+
 <img width="535" height="451" alt="image" src="https://github.com/user-attachments/assets/5b87866e-6ea2-4171-ac53-f88b3bdd94a9" />
 
 
