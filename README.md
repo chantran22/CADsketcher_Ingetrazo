@@ -345,5 +345,10 @@ From sketch with dimension constraints & curved path radius constraint given, ca
 
 <img width="535" height="451" alt="image" src="https://github.com/user-attachments/assets/5b87866e-6ea2-4171-ac53-f88b3bdd94a9" />
 
+Handrail create from path & round section sketch.
+
+<img width="420" height="328" alt="image" src="https://github.com/user-attachments/assets/8878158c-099e-4861-b249-a037c93ab43b" />
+
+
 
 
