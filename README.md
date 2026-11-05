@@ -3,7 +3,7 @@
 Constraint-based sketches that drive solids — the idea of the Blender add-on
 [CAD_Sketcher](https://hlorus.github.io/CAD_Sketcher/), rebuilt on IngeTrazo's
 extension API. Draw on a workplane, dimension it, then **Extrude / Loft /
-Sweep/ Revolve (around specificed axis)**. The solid keeps its sketch: change a dimension (or a fillet radius) and
+Sweep/ Revolve (around specified axis)**. The solid keeps its sketch: change a dimension (or a fillet radius) and
 it is rebuilt, and one Undo takes back sketch and solid together.
 
 info CAD sketcher -Blender can find in link [https://www.cadsketcher.com/]
