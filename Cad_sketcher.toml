@@ -1,0 +1,27 @@
+id = "CAD_sketcher"
+version = "0.0.1"
+author = "Kay Tran"
+author_url = "https://github.com/chantran22"
+
+license = "GPL-3.0-or-later"
+
+repository = "https://github.com/chantran22/CADsketcher_Ingetrazo"
+
+download = ""
+sha256 = ""
+
+ingetrazo = "0.5.9"
+
+tags = ["productivity", "3d model"]
+
+[name]
+en = "CAD_sketcher"
+es = "CAD_sketcher"
+pt = "CAD_sketcher"
+
+[summary]
+en = "A plugin for Ingetrazo to draw in precision shape and can be editable & reupdate when changing inner sketch."
+
+es = "Un plugin para Ingetrazo para dibujar figuras con precisión que se pueden editar y actualizar al cambiar el boceto interno."
+
+pt = "Um plugin para o Ingetrazo para desenhar formas precisas que podem ser editadas e atualizadas quando o esboço interior é alterado."
