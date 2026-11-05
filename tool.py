@@ -22,7 +22,7 @@ import logging
 import math
 
 import numpy as np
-from PySide6.QtCore import QPointF, QRectF, Qt
+from PySide6.QtCore import QEvent, QObject, QPointF, QRectF, Qt
 from PySide6.QtGui import QColor, QFont, QPen, QPolygonF, QVector3D
 
 from . import convert, edit, host, model, solver
@@ -171,10 +171,45 @@ class SketchTool(Tool):
     # -- host hooks -----------------------------------------------------------
     def on_activate(self, viewport) -> None:
         self.viewport = viewport
+        self._guard_double_click(viewport)
         self.ctrl.say(HINTS.get(self.ctrl.mode, ""), 8000)
 
     def on_deactivate(self, viewport) -> None:
         self.reset()
+        guard = getattr(self, "_dbl_guard", None)
+        if guard is not None:
+            viewport.removeEventFilter(guard)
+
+    def _guard_double_click(self, viewport) -> None:
+        """Keep the double-click for the sketch while it is being edited.
+
+        Other extensions may claim the viewport's double-click for
+        themselves (Igz_Gumball's Radial Menu does): their event filter then
+        eats it before IngeTrazo hands it to this tool, and a dimension
+        could no longer be edited by double-clicking it. Qt asks the filter
+        installed LAST first, so ours is (re)installed on every activation;
+        it only acts while this tool is the active one and a sketch is open,
+        so everywhere else the other extension works as before."""
+        guard = getattr(self, "_dbl_guard", None)
+        if guard is None:
+            guard = self._dbl_guard = _DoubleClickGuard(self)
+        viewport.removeEventFilter(guard)
+        viewport.installEventFilter(guard)
+
+    def edit_selected_value(self) -> bool:
+        """Edit the dimension selected last (Enter / F2 / the panel's
+        «Edit value…»). False when no dimension is selected."""
+        sk = self.ctrl.sketch()
+        if sk is None:
+            return False
+        by = {c["id"]: c for c in sk["cons"]}
+        cid = next((i for i in reversed(self.ctrl.sel_cons)
+                    if "v" in by.get(i, {})), None)
+        if cid is None:
+            return False
+        from PySide6.QtCore import QTimer
+        QTimer.singleShot(0, lambda: self.ctrl.edit_value(cid))
+        return True
 
     def reset(self) -> None:
         """Drop whatever was half done (and put a moved entity back)."""
@@ -430,6 +465,13 @@ class SketchTool(Tool):
             from PySide6.QtCore import QTimer
             return lambda: QTimer.singleShot(
                 0, lambda: ctrl.constrain(ctype, axis))
+        if mods == Qt.NoModifier and key in (Qt.Key_Return, Qt.Key_Enter,
+                                             Qt.Key_F2):
+            sk = ctrl.sketch()
+            dims = {c["id"] for c in sk["cons"] if "v" in c}
+            if any(i in dims for i in ctrl.sel_cons):
+                return self.edit_selected_value
+            return None
         if mods == Qt.ControlModifier:
             return {Qt.Key_C: ctrl.copy, Qt.Key_A: ctrl.select_all,
                     Qt.Key_V: lambda: ctrl.set_mode("paste")
@@ -832,6 +874,36 @@ class SketchTool(Tool):
             end = (a[0] + (cur[0] - a[0]) * r / d, a[1] + (cur[1] - a[1]) * r / d)
             return [convert.arc_points(a, s, end, 64), [a, s], [a, end]]
         return []
+
+
+class _DoubleClickGuard(QObject):
+    """Viewport event filter: a left double-click while a sketch is being
+    edited goes to the sketch tool, not to another extension's menu."""
+
+    def __init__(self, tool) -> None:
+        super().__init__()
+        self.tool = tool
+
+    def eventFilter(self, obj, event) -> bool:  # noqa: N802 (Qt's name)
+        if event.type() != QEvent.Type.MouseButtonDblClick \
+                or event.button() != Qt.LeftButton:
+            return False
+        tool = self.tool
+        vp = tool.viewport
+        if obj is not vp or getattr(vp, "active_tool", None) is not tool \
+                or tool.ctrl.sketch() is None:
+            return False
+        from types import SimpleNamespace
+        pos = event.position()
+        try:
+            tool.on_double_click(SimpleNamespace(
+                viewport=vp, screen=QPointF(pos.x(), pos.y()), world=None,
+                modifiers=event.modifiers(), snap=None))
+        except Exception:  # noqa: BLE001 — never break the viewport's input
+            log.exception("CAD Sketcher double-click failed")
+        vp.update()
+        event.accept()
+        return True
 
 
 class PickFaceTool(Tool):

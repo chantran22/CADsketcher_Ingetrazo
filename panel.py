@@ -636,6 +636,9 @@ class SketcherPanel(QWidget):
                  lambda: ctrl.toggle_flag("con")),
                 ("Fix point", "A fixed point cannot move.",
                  lambda: ctrl.toggle_flag("fixed")),
+                ("Edit value…", "Change the dimension selected last — click "
+                 "its label on the drawing or its row below first (or press "
+                 "Enter / F2 with it selected).", self._edit_value),
                 ("Chain", "Select the whole connected outline of the last "
                  "selected line or arc (or double-click it).",
                  lambda: ctrl.select_chain()),
@@ -949,6 +952,12 @@ class SketcherPanel(QWidget):
             self.ctrl.finish()
         else:
             self._edit()
+
+    def _edit_value(self) -> None:
+        tool = self.ctrl.tool
+        if tool is None or not tool.edit_selected_value():
+            self.ctrl.say("Select a dimension first: click its label on the "
+                          "drawing, or its row in the list.")
 
     def _placement(self) -> None:
         ctrl = self.ctrl
